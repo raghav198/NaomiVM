@@ -1,0 +1,49 @@
+Each instruction occupies the 5 higher order bits of a byte
+The lower three bits are used for specifying special forms of the instruction
+as follows:
+
+NOP: no special form
+PUSH: if 0, then push an immediate value
+        otherwise, push the corresponding register
+POP: bottom 3 bits specify the register (cannot be 000)
+MOV: consumes 2 bytes MINIMUM for the instruction
+    First 3 bits (destination):
+        000 -> memory location
+        001-111 -> register
+    Next 4 bits (source):
+        1XXX -> immediate value
+        0000 -> memory location
+        0001-0111 -> register
+    Next bit:
+        Dereference source?
+    Next bit:
+        Dereference destination?
+    Next 2 bits:
+        00 -> 32-bit move
+        01 -> 16-bit move
+        10 -> 8-bit move
+        11 -> 4-bit move
+
+
+    1. Moving into register, or memory location? (3 bits)
+    2. Moving from register, or memory location, or immediate value? (4 bits)
+    3. Dereference the source? (1 bit)
+    4. Dereference the destination? (1 bit)
+    5. Size of move? [D, W, B, L, H] (3 bits)
+
+ADD/SUB/MUL/AND/OR/NOT/XOR/NAND/NOR:
+    First 3 bits (destination) [same as MOV]
+    Next 4 bits (source) [same as MOV]
+    Next 2 bits are ignored
+    Final 2 bits are size
+
+
+"
+
+"
+SYSCALLS:
+    0 -> EXIT (return in rgb)
+    1 -> PUTCHAR
+    2 -> PRINT
+    3 -> GETCHAR
+    4 -> READ
