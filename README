@@ -1,3 +1,29 @@
+Instruction Set:
+enum {
+0  =   NOP, 
+1  =   PUSH,
+2  =   POP,
+3  =   MOV,
+4  =   ADD,
+5  =   SUB,
+6  =   MUL,
+7  =   CMP,
+8  =   JMP,
+9  =   JEQ,
+10 =   JNE,
+11 =   JLT,
+12 =   JGT,
+13 =   JLE,
+14 =   JGE,
+15 =   CALL,
+16 =   RET,
+17 =   SYSINT,
+18 =   AND,
+19 =   OR,
+20 =   XOR,
+21 =   NAND,
+22 =   NOR
+};
 Each instruction occupies the 5 higher order bits of a byte
 The lower three bits are used for specifying special forms of the instruction
 as follows:
@@ -38,9 +64,7 @@ ADD/SUB/MUL/AND/OR/NOT/XOR/NAND/NOR:
     Final 2 bits are size
 
 
-"
 
-"
 SYSCALLS:
     0 -> EXIT (return in rgb)
     1 -> PUTCHAR
